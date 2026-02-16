@@ -3,6 +3,7 @@ import { aiService } from './services/aiService';
 import { Controls } from './components/Controls';
 import { Arena } from './components/Arena';
 import { StatsPanel } from './components/StatsPanel';
+import { StatisticalResults } from './components/StatisticalResults';
 import { Move, GameState, GameResult } from './types';
 import { WINNING_MOVE } from './constants';
 
@@ -16,7 +17,10 @@ const initialGameState: GameState = {
   history: [],
 };
 
+type PageView = 'game' | 'stats';
+
 export default function App() {
+  const [currentPage, setCurrentPage] = useState<PageView>('game');
   const [gameState, setGameState] = useState<GameState>(initialGameState);
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -77,6 +81,18 @@ export default function App() {
     setConfidence([0.33, 0.33, 0.33]);
   };
 
+  // Render Statistical Results page
+  if (currentPage === 'stats') {
+    return (
+      <StatisticalResults
+        gameState={gameState}
+        confidence={confidence}
+        historyCount={aiService.getHistoryLength()}
+        onBack={() => setCurrentPage('game')}
+      />
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[#050505] text-zinc-100 flex flex-col items-center p-4 sm:p-8 selection:bg-emerald-500/30">
 
@@ -89,6 +105,17 @@ export default function App() {
           Synthetic Cognition • Non-Deterministic Counter-Play
         </p>
       </header>
+
+      {/* Stats Button */}
+      <button
+        onClick={() => setCurrentPage('stats')}
+        className="fixed top-4 right-4 z-50 flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-700 rounded-lg text-zinc-400 hover:text-white hover:border-emerald-500/50 transition-all font-mono text-xs uppercase tracking-wider"
+      >
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+        Stats
+      </button>
 
       {/* Main Game Area */}
       <main className="w-full max-w-4xl flex flex-col items-center">
