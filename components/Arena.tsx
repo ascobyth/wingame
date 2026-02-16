@@ -30,10 +30,10 @@ export const Arena: React.FC<ArenaProps> = ({ playerMove, aiMove, result, isThin
 
   return (
     <div className="relative w-full max-w-2xl mx-auto h-64 sm:h-80 bg-zinc-900/40 rounded-3xl border border-zinc-800/60 flex items-center justify-between px-8 sm:px-16 overflow-hidden shadow-2xl">
-      
+
       {/* Background Grid Effect */}
-      <div className="absolute inset-0 opacity-5" 
-           style={{ backgroundImage: 'linear-gradient(#444 1px, transparent 1px), linear-gradient(90deg, #444 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
+      <div className="absolute inset-0 opacity-5"
+        style={{ backgroundImage: 'linear-gradient(#444 1px, transparent 1px), linear-gradient(90deg, #444 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
       </div>
 
       {/* Player Side */}
@@ -47,21 +47,21 @@ export const Arena: React.FC<ArenaProps> = ({ playerMove, aiMove, result, isThin
       {/* VS / Result Center */}
       <div className="z-10 flex flex-col items-center justify-center">
         {isThinking ? (
-             <div className="flex flex-col items-center">
-                <div className="w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
-                <span className="text-emerald-400 text-[10px] font-mono mt-3 animate-pulse tracking-tighter">NEURAL_ANALYSIS_LIVE</span>
-             </div>
+          <div className="flex flex-col items-center">
+            <div className="w-12 h-12 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin"></div>
+            <span className="text-emerald-400 text-[10px] font-mono mt-3 animate-pulse tracking-tighter">NEURAL_ANALYSIS_LIVE</span>
+          </div>
         ) : (
-            <div className={`text-3xl sm:text-5xl font-black font-mono tracking-tighter transition-all duration-300 ${getResultColor()}`}>
+          <div className={`text-3xl sm:text-5xl font-black font-mono tracking-tighter transition-all duration-300 ${getResultColor()}`}>
             {result ? getResultMessage() : 'VS'}
-            </div>
+          </div>
         )}
       </div>
 
       {/* AI Side */}
       <div className="z-10 flex flex-col items-center">
         <div className={`text-6xl sm:text-8xl transition-all duration-500 ${aiMove !== null ? 'animate-float' : ''}`}>
-          {aiMove !== null ? MOVE_EMOJIS[aiMove] : '🤖'}
+          {aiMove !== null ? MOVE_EMOJIS[aiMove] : '🐶'}
         </div>
         <div className="mt-4 font-mono text-sm text-emerald-500 font-bold tracking-widest uppercase">NEURAL NET</div>
       </div>
