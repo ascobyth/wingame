@@ -26,7 +26,7 @@ export const StatsPanel: React.FC<StatsPanelProps> = ({ confidence, historyCount
 
     // Determine who is winning
     const getWinningStatus = () => {
-        if (playerScore > aiScore) return { text: 'USER LEADING', color: 'text-white', icon: '👤' };
+        if (playerScore > aiScore) return { text: 'USER LEADING', color: 'text-white', icon: '🧑‍💻' };
         if (aiScore > playerScore) return { text: 'AGENT LEADING', color: 'text-emerald-400', icon: '🤖' };
         return { text: 'TIE GAME', color: 'text-zinc-400', icon: '⚡' };
     };

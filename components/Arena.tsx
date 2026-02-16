@@ -39,7 +39,7 @@ export const Arena: React.FC<ArenaProps> = ({ playerMove, aiMove, result, isThin
       {/* Player Side */}
       <div className="z-10 flex flex-col items-center">
         <div className={`text-6xl sm:text-8xl transition-all duration-500 ${playerMove !== null ? 'animate-float' : ''}`}>
-          {playerMove !== null ? MOVE_EMOJIS[playerMove] : '👤'}
+          {playerMove !== null ? MOVE_EMOJIS[playerMove] : '🧑‍💻'}
         </div>
         <div className="mt-4 font-mono text-sm text-zinc-500 tracking-widest uppercase">YOU</div>
       </div>
