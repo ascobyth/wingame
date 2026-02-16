@@ -1,0 +1,5 @@
+{
+  "name": "Neural Hand: Unbeatable RPS",
+  "description": "A Rock-Paper-Scissors game powered by a real-time learning TensorFlow.js neural network that analyzes your patterns to predict and counter your next move.",
+  "requestFramePermissions": []
+}
