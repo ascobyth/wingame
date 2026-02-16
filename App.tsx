@@ -94,7 +94,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-zinc-100 flex flex-col items-center p-4 sm:p-8 selection:bg-emerald-500/30">
+    <div className="min-h-screen bg-pink-400 text-zinc-100 flex flex-col items-center p-4 sm:p-8 selection:bg-emerald-500/30">
 
       {/* Header */}
       <header className="mb-8 text-center space-y-2">
