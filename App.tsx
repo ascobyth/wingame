@@ -35,9 +35,7 @@ export default function App() {
 
   const determineResult = (p: Move, ai: Move): GameResult => {
     if (p === ai) return GameResult.Tie;
-    if (WINNING_MOVE[p] === ai) return GameResult.Loss; // If Player's winning move IS the AI's move (wait, logic check)
-    // WINNING_MOVE[Rock] = Paper. If AI is Paper, AI wins (Player Loss).
-    // Correct.
+    if (WINNING_MOVE[p] === ai) return GameResult.Loss;
     return GameResult.Win;
   };
 
@@ -45,20 +43,15 @@ export default function App() {
     if (isProcessing) return;
     setIsProcessing(true);
 
-    // 1. AI decides its move (Predicts user move, then counters it)
     const predictedAiMove = aiService.predictCounterMove();
     
-    // 2. Get Confidence (Before training on new data, effectively what the AI thought BEFORE this turn)
     const currentConfidence = aiService.getConfidence();
     setConfidence(currentConfidence);
 
-    // 3. Simulate "Thinking" delay for dramatic effect
     await new Promise(r => setTimeout(r, 600));
 
-    // 4. Calculate result
     const result = determineResult(playerMove, predictedAiMove);
 
-    // 5. Update State
     setGameState(prev => ({
         ...prev,
         playerMove,
@@ -70,22 +63,21 @@ export default function App() {
         history: [...prev.history, playerMove],
     }));
 
-    // 6. Train the model with the *new* player move
     await aiService.recordMoveAndTrain(playerMove);
 
     setIsProcessing(false);
   }, [isProcessing]);
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col items-center p-4 sm:p-8 selection:bg-violet-500/30">
+    <div className="min-h-screen bg-[#050505] text-zinc-100 flex flex-col items-center p-4 sm:p-8 selection:bg-emerald-500/30">
       
       {/* Header */}
       <header className="mb-8 text-center space-y-2">
-        <h1 className="text-4xl sm:text-6xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-zinc-200 to-zinc-600">
+        <h1 className="text-4xl sm:text-6xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-emerald-200 to-zinc-600">
           NEURAL HAND
         </h1>
-        <p className="text-violet-400 font-mono text-sm tracking-widest uppercase">
-            TensorFlow.js Powered • Unbeatable Logic
+        <p className="text-emerald-500/80 font-mono text-[10px] tracking-[0.3em] uppercase">
+            Synthetic Cognition • Non-Deterministic Counter-Play
         </p>
       </header>
 
@@ -93,20 +85,20 @@ export default function App() {
       <main className="w-full max-w-4xl flex flex-col items-center">
         
         {/* Score Board */}
-        <div className="flex justify-between w-full max-w-md mb-8 px-6 py-3 bg-zinc-900/80 rounded-full border border-zinc-800">
+        <div className="flex justify-between w-full max-w-md mb-8 px-8 py-4 bg-zinc-900/60 rounded-2xl border border-zinc-800/80 backdrop-blur-md">
             <div className="flex flex-col items-center">
-                <span className="text-xs text-zinc-500 font-bold tracking-wider">HUMAN</span>
-                <span className="text-2xl font-mono text-white">{gameState.playerScore}</span>
+                <span className="text-[10px] text-zinc-600 font-bold tracking-[0.2em] uppercase mb-1">USER</span>
+                <span className="text-3xl font-mono text-white tracking-tighter">{gameState.playerScore}</span>
             </div>
-            <div className="h-full w-px bg-zinc-800"></div>
+            <div className="h-10 w-px bg-zinc-800 self-center"></div>
             <div className="flex flex-col items-center">
-                <span className="text-xs text-zinc-500 font-bold tracking-wider">ROUNDS</span>
-                <span className="text-xl font-mono text-zinc-400">{gameState.roundCount}</span>
+                <span className="text-[10px] text-zinc-600 font-bold tracking-[0.2em] uppercase mb-1">EPOCH</span>
+                <span className="text-2xl font-mono text-zinc-400 tracking-tighter">{gameState.roundCount}</span>
             </div>
-             <div className="h-full w-px bg-zinc-800"></div>
+             <div className="h-10 w-px bg-zinc-800 self-center"></div>
             <div className="flex flex-col items-center">
-                <span className="text-xs text-violet-500 font-bold tracking-wider">AI AGENT</span>
-                <span className="text-2xl font-mono text-violet-400">{gameState.aiScore}</span>
+                <span className="text-[10px] text-emerald-600 font-bold tracking-[0.2em] uppercase mb-1">AGENT</span>
+                <span className="text-3xl font-mono text-emerald-400 tracking-tighter">{gameState.aiScore}</span>
             </div>
         </div>
 
@@ -126,11 +118,12 @@ export default function App() {
 
       </main>
       
-      <footer className="mt-12 text-zinc-600 text-xs font-mono text-center max-w-lg">
+      <footer className="mt-16 text-zinc-700 text-[10px] font-mono text-center max-w-md leading-relaxed tracking-tight">
+        <p className="uppercase opacity-50 mb-2">Technical Summary</p>
         <p>
-            This game uses a Machine Learning model running entirely in your browser. 
-            It analyzes your move history to predict your next action. 
-            The more you play, the harder it gets to win.
+            Local-First Neural Network executing real-time weight adjustment via Adam Optimization. 
+            The system identifies cyclical patterns and recursive heuristics within player input streams. 
+            Resistance is computationally futile.
         </p>
       </footer>
     </div>

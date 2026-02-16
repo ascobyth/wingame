@@ -32,10 +32,10 @@ export const LOSING_MOVE: Record<Move, Move> = {
 export const HISTORY_WINDOW_SIZE = 5; 
 
 export const COLORS = {
-  primary: '#8b5cf6', // Violet
+  primary: '#10b981', // Emerald
   secondary: '#06b6d4', // Cyan
   accent: '#f43f5e', // Rose
   success: '#10b981', // Emerald
   warning: '#f59e0b', // Amber
-  dark: '#18181b', // Zinc 900
+  dark: '#0a0a0a', // Zinc 950
 };
