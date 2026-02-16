@@ -109,8 +109,8 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
     const CustomTooltip = ({ active, payload, label }: any) => {
         if (active && payload && payload.length) {
             return (
-                <div className="bg-zinc-900 border border-zinc-700 p-3 rounded-lg">
-                    <p className="text-zinc-400 text-xs font-mono mb-1">Round {label}</p>
+                <div className="bg-white border border-pink-300 p-3 rounded-lg shadow-md">
+                    <p className="text-pink-500 text-xs font-mono mb-1">Round {label}</p>
                     {payload.map((entry: any, index: number) => (
                         <p key={index} style={{ color: entry.color }} className="text-xs font-mono">
                             {entry.name}: {typeof entry.value === 'number' ? entry.value.toFixed(1) : entry.value}%
@@ -123,19 +123,19 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
     };
 
     return (
-        <div className="min-h-screen bg-[#050505] text-zinc-100 p-4 sm:p-8">
+        <div className="min-h-screen bg-[#fce7f3] text-zinc-800 p-4 sm:p-8">
             {/* Header */}
             <div className="flex items-center justify-between mb-8">
                 <button
                     onClick={onBack}
-                    className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors font-mono text-sm"
+                    className="flex items-center gap-2 text-pink-600 hover:text-pink-800 transition-colors font-mono text-sm"
                 >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                     Back to Game
                 </button>
-                <h1 className="text-2xl sm:text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-white via-emerald-200 to-zinc-600">
+                <h1 className="text-2xl sm:text-4xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-pink-600 via-pink-400 to-pink-300">
                     STATISTICAL RESULTS
                 </h1>
                 <div className="w-24"></div>
@@ -143,21 +143,21 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
 
             {/* Summary Cards */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8 max-w-6xl mx-auto">
-                <div className="bg-zinc-900 border border-zinc-800 p-4 rounded-xl text-center">
-                    <p className="text-zinc-500 text-[10px] font-mono uppercase tracking-widest mb-2">Total Games</p>
-                    <p className="text-3xl font-bold text-white">{roundCount}</p>
+                <div className="bg-white border border-pink-200 p-4 rounded-xl text-center shadow-sm">
+                    <p className="text-pink-400 text-[10px] font-mono uppercase tracking-widest mb-2">Total Games</p>
+                    <p className="text-3xl font-bold text-pink-700">{roundCount}</p>
                 </div>
-                <div className="bg-zinc-900 border border-emerald-900/50 p-4 rounded-xl text-center">
+                <div className="bg-white border border-emerald-200 p-4 rounded-xl text-center shadow-sm">
                     <p className="text-emerald-500/80 text-[10px] font-mono uppercase tracking-widest mb-2">Win Rate</p>
-                    <p className="text-3xl font-bold text-emerald-400">{winRate}%</p>
+                    <p className="text-3xl font-bold text-emerald-500">{winRate}%</p>
                 </div>
-                <div className="bg-zinc-900 border border-red-900/50 p-4 rounded-xl text-center">
+                <div className="bg-white border border-red-200 p-4 rounded-xl text-center shadow-sm">
                     <p className="text-red-500/80 text-[10px] font-mono uppercase tracking-widest mb-2">Loss Rate</p>
-                    <p className="text-3xl font-bold text-red-400">{lossRate}%</p>
+                    <p className="text-3xl font-bold text-red-500">{lossRate}%</p>
                 </div>
-                <div className="bg-zinc-900 border border-amber-900/50 p-4 rounded-xl text-center">
+                <div className="bg-white border border-amber-200 p-4 rounded-xl text-center shadow-sm">
                     <p className="text-amber-500/80 text-[10px] font-mono uppercase tracking-widest mb-2">Tie Rate</p>
-                    <p className="text-3xl font-bold text-amber-400">{tieRate}%</p>
+                    <p className="text-3xl font-bold text-amber-500">{tieRate}%</p>
                 </div>
             </div>
 
@@ -165,9 +165,9 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
 
                 {/* Results Distribution Pie Chart */}
-                <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl">
-                    <h3 className="text-zinc-500 text-[10px] font-mono uppercase mb-4 tracking-widest flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                <div className="bg-white border border-pink-200 p-6 rounded-xl shadow-sm">
+                    <h3 className="text-pink-500 text-[10px] font-mono uppercase mb-4 tracking-widest flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-pink-500"></span>
                         Game Results Distribution
                     </h3>
                     <div className="h-64">
@@ -187,36 +187,36 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
                                     ))}
                                 </Pie>
                                 <Tooltip
-                                    contentStyle={{ backgroundColor: '#0a0a0a', borderColor: '#27272a', color: '#fff' }}
+                                    contentStyle={{ backgroundColor: '#fce7f3', borderColor: '#f9a8d4', color: '#831843' }}
                                     formatter={(value: number) => [value, 'Games']}
                                 />
                                 <Legend
                                     verticalAlign="bottom"
                                     height={36}
-                                    formatter={(value) => <span className="text-zinc-400 text-xs font-mono">{value}</span>}
+                                    formatter={(value) => <span className="text-pink-600 text-xs font-mono">{value}</span>}
                                 />
                             </PieChart>
                         </ResponsiveContainer>
                     </div>
                     <div className="flex justify-center gap-6 mt-4">
                         <div className="text-center">
-                            <p className="text-2xl font-bold text-emerald-400">{playerScore}</p>
-                            <p className="text-[10px] text-zinc-500 font-mono uppercase">Wins</p>
+                            <p className="text-2xl font-bold text-emerald-500">{playerScore}</p>
+                            <p className="text-[10px] text-pink-400 font-mono uppercase">Wins</p>
                         </div>
                         <div className="text-center">
-                            <p className="text-2xl font-bold text-red-400">{aiScore}</p>
-                            <p className="text-[10px] text-zinc-500 font-mono uppercase">Losses</p>
+                            <p className="text-2xl font-bold text-red-500">{aiScore}</p>
+                            <p className="text-[10px] text-pink-400 font-mono uppercase">Losses</p>
                         </div>
                         <div className="text-center">
-                            <p className="text-2xl font-bold text-amber-400">{tieCount}</p>
-                            <p className="text-[10px] text-zinc-500 font-mono uppercase">Ties</p>
+                            <p className="text-2xl font-bold text-amber-500">{tieCount}</p>
+                            <p className="text-[10px] text-pink-400 font-mono uppercase">Ties</p>
                         </div>
                     </div>
                 </div>
 
                 {/* Move Distribution Pie Chart */}
-                <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl">
-                    <h3 className="text-zinc-500 text-[10px] font-mono uppercase mb-4 tracking-widest flex items-center gap-2">
+                <div className="bg-white border border-pink-200 p-6 rounded-xl shadow-sm">
+                    <h3 className="text-pink-500 text-[10px] font-mono uppercase mb-4 tracking-widest flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-cyan-500"></span>
                         Your Move Distribution
                     </h3>
@@ -224,7 +224,7 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
                         <ResponsiveContainer width="100%" height="100%">
                             <PieChart>
                                 <Pie
-                                    data={moveDistribution.length > 0 ? moveDistribution : [{ name: 'No Data', value: 1, color: '#27272a' }]}
+                                    data={moveDistribution.length > 0 ? moveDistribution : [{ name: 'No Data', value: 1, color: '#fce7f3' }]}
                                     cx="50%"
                                     cy="50%"
                                     innerRadius={60}
@@ -236,40 +236,40 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
                                         moveDistribution.map((entry, index) => (
                                             <Cell key={`cell-${index}`} fill={entry.color} />
                                         )) :
-                                        <Cell fill="#27272a" />
+                                        <Cell fill="#fce7f3" />
                                     }
                                 </Pie>
                                 <Tooltip
-                                    contentStyle={{ backgroundColor: '#0a0a0a', borderColor: '#27272a', color: '#fff' }}
+                                    contentStyle={{ backgroundColor: '#fce7f3', borderColor: '#f9a8d4', color: '#831843' }}
                                     formatter={(value: number) => [value, 'Times Used']}
                                 />
                                 <Legend
                                     verticalAlign="bottom"
                                     height={36}
-                                    formatter={(value) => <span className="text-zinc-400 text-xs font-mono">{value}</span>}
+                                    formatter={(value) => <span className="text-pink-600 text-xs font-mono">{value}</span>}
                                 />
                             </PieChart>
                         </ResponsiveContainer>
                     </div>
                     <div className="flex justify-center gap-6 mt-4">
                         <div className="text-center">
-                            <p className="text-2xl font-bold text-emerald-400">{rockCount}</p>
-                            <p className="text-[10px] text-zinc-500 font-mono uppercase">🪨 Rock</p>
+                            <p className="text-2xl font-bold text-emerald-500">{rockCount}</p>
+                            <p className="text-[10px] text-pink-400 font-mono uppercase">🪨 Rock</p>
                         </div>
                         <div className="text-center">
-                            <p className="text-2xl font-bold text-cyan-400">{paperCount}</p>
-                            <p className="text-[10px] text-zinc-500 font-mono uppercase">📄 Paper</p>
+                            <p className="text-2xl font-bold text-cyan-500">{paperCount}</p>
+                            <p className="text-[10px] text-pink-400 font-mono uppercase">📄 Paper</p>
                         </div>
                         <div className="text-center">
-                            <p className="text-2xl font-bold text-violet-400">{scissorsCount}</p>
-                            <p className="text-[10px] text-zinc-500 font-mono uppercase">✂️ Scissors</p>
+                            <p className="text-2xl font-bold text-violet-500">{scissorsCount}</p>
+                            <p className="text-[10px] text-pink-400 font-mono uppercase">✂️ Scissors</p>
                         </div>
                     </div>
                 </div>
 
                 {/* AI Prediction Confidence */}
-                <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl">
-                    <h3 className="text-zinc-500 text-[10px] font-mono uppercase mb-4 tracking-widest flex items-center gap-2">
+                <div className="bg-white border border-pink-200 p-6 rounded-xl shadow-sm">
+                    <h3 className="text-pink-500 text-[10px] font-mono uppercase mb-4 tracking-widest flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-violet-500"></span>
                         AI Prediction Confidence
                     </h3>
@@ -281,14 +281,14 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
                                     dataKey="name"
                                     type="category"
                                     width={70}
-                                    tick={{ fill: '#71717a', fontSize: 11, fontFamily: 'monospace' }}
+                                    tick={{ fill: '#db2777', fontSize: 11, fontFamily: 'monospace' }}
                                     axisLine={false}
                                     tickLine={false}
                                 />
                                 <Tooltip
-                                    contentStyle={{ backgroundColor: '#0a0a0a', borderColor: '#27272a', color: '#fff' }}
+                                    contentStyle={{ backgroundColor: '#fce7f3', borderColor: '#f9a8d4', color: '#831843' }}
                                     formatter={(value: number) => [`${value.toFixed(1)}%`, 'Confidence']}
-                                    cursor={{ fill: 'rgba(255,255,255,0.03)' }}
+                                    cursor={{ fill: 'rgba(236, 72, 153, 0.1)' }}
                                 />
                                 <Bar dataKey="prob" radius={[0, 4, 4, 0]} barSize={24}>
                                     {confidenceData.map((entry, index) => (
@@ -298,14 +298,14 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
-                    <p className="text-[9px] text-zinc-600 mt-2 font-mono text-center uppercase tracking-tighter">
+                    <p className="text-[9px] text-pink-400 mt-2 font-mono text-center uppercase tracking-tighter">
                         Current AI prediction weights for your next move
                     </p>
                 </div>
 
                 {/* Move Frequency Over Time */}
-                <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl">
-                    <h3 className="text-zinc-500 text-[10px] font-mono uppercase mb-4 tracking-widest flex items-center gap-2">
+                <div className="bg-white border border-pink-200 p-6 rounded-xl shadow-sm">
+                    <h3 className="text-pink-500 text-[10px] font-mono uppercase mb-4 tracking-widest flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-amber-500"></span>
                         Move Frequency Trend
                     </h3>
@@ -314,12 +314,12 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
                             <AreaChart data={moveFrequencyData} margin={{ left: 0, right: 0 }}>
                                 <XAxis
                                     dataKey="round"
-                                    tick={{ fill: '#52525b', fontSize: 10, fontFamily: 'monospace' }}
-                                    axisLine={{ stroke: '#27272a' }}
+                                    tick={{ fill: '#db2777', fontSize: 10, fontFamily: 'monospace' }}
+                                    axisLine={{ stroke: '#f9a8d4' }}
                                     tickLine={false}
                                 />
                                 <YAxis
-                                    tick={{ fill: '#52525b', fontSize: 10, fontFamily: 'monospace' }}
+                                    tick={{ fill: '#db2777', fontSize: 10, fontFamily: 'monospace' }}
                                     axisLine={false}
                                     tickLine={false}
                                     domain={[0, 100]}
@@ -356,14 +356,14 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
                             </AreaChart>
                         </ResponsiveContainer>
                     </div>
-                    <p className="text-[9px] text-zinc-600 mt-2 font-mono text-center uppercase tracking-tighter">
+                    <p className="text-[9px] text-pink-400 mt-2 font-mono text-center uppercase tracking-tighter">
                         Rolling 5-round window move distribution
                     </p>
                 </div>
 
                 {/* Performance Trend */}
-                <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl lg:col-span-2">
-                    <h3 className="text-zinc-500 text-[10px] font-mono uppercase mb-4 tracking-widest flex items-center gap-2">
+                <div className="bg-white border border-pink-200 p-6 rounded-xl shadow-sm lg:col-span-2">
+                    <h3 className="text-pink-500 text-[10px] font-mono uppercase mb-4 tracking-widest flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                         Win Rate Trend Over Time
                     </h3>
@@ -372,12 +372,12 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
                             <LineChart data={performanceData} margin={{ left: 0, right: 0 }}>
                                 <XAxis
                                     dataKey="round"
-                                    tick={{ fill: '#52525b', fontSize: 10, fontFamily: 'monospace' }}
-                                    axisLine={{ stroke: '#27272a' }}
+                                    tick={{ fill: '#db2777', fontSize: 10, fontFamily: 'monospace' }}
+                                    axisLine={{ stroke: '#f9a8d4' }}
                                     tickLine={false}
                                 />
                                 <YAxis
-                                    tick={{ fill: '#52525b', fontSize: 10, fontFamily: 'monospace' }}
+                                    tick={{ fill: '#db2777', fontSize: 10, fontFamily: 'monospace' }}
                                     axisLine={false}
                                     tickLine={false}
                                     domain={[0, 100]}
@@ -387,16 +387,16 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
                                 <Line
                                     type="monotone"
                                     dataKey="winRate"
-                                    stroke="#10b981"
+                                    stroke="#ec4899"
                                     strokeWidth={2}
-                                    dot={{ fill: '#10b981', strokeWidth: 0, r: 3 }}
-                                    activeDot={{ r: 5, fill: '#10b981' }}
+                                    dot={{ fill: '#ec4899', strokeWidth: 0, r: 3 }}
+                                    activeDot={{ r: 5, fill: '#ec4899' }}
                                     name="Win Rate"
                                 />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
-                    <p className="text-[9px] text-zinc-600 mt-2 font-mono text-center uppercase tracking-tighter">
+                    <p className="text-[9px] text-pink-400 mt-2 font-mono text-center uppercase tracking-tighter">
                         Cumulative win rate progression (last 20 rounds)
                     </p>
                 </div>
@@ -404,46 +404,46 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
 
             {/* Detailed Stats Table */}
             <div className="mt-8 max-w-6xl mx-auto">
-                <div className="bg-zinc-900 border border-zinc-800 p-6 rounded-xl">
-                    <h3 className="text-zinc-500 text-[10px] font-mono uppercase mb-4 tracking-widest flex items-center gap-2">
+                <div className="bg-white border border-pink-200 p-6 rounded-xl shadow-sm">
+                    <h3 className="text-pink-500 text-[10px] font-mono uppercase mb-4 tracking-widest flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-cyan-500"></span>
                         Detailed Statistics
                     </h3>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                        <div className="bg-zinc-950 p-4 rounded-lg border border-zinc-800/50">
-                            <p className="text-[10px] text-zinc-600 font-mono uppercase mb-1">Favorite Move</p>
-                            <p className="text-lg font-bold text-white">
+                        <div className="bg-pink-50 p-4 rounded-lg border border-pink-100">
+                            <p className="text-[10px] text-pink-400 font-mono uppercase mb-1">Favorite Move</p>
+                            <p className="text-lg font-bold text-pink-700">
                                 {rockCount >= paperCount && rockCount >= scissorsCount ? '🪨 Rock' :
                                     paperCount >= scissorsCount ? '📄 Paper' : '✂️ Scissors'}
                             </p>
-                            <p className="text-[10px] text-zinc-500 font-mono">
+                            <p className="text-[10px] text-pink-400 font-mono">
                                 {Math.max(rockCount, paperCount, scissorsCount)} times ({roundCount > 0 ? (Math.max(rockCount, paperCount, scissorsCount) / roundCount * 100).toFixed(0) : 0}%)
                             </p>
                         </div>
-                        <div className="bg-zinc-950 p-4 rounded-lg border border-zinc-800/50">
-                            <p className="text-[10px] text-zinc-600 font-mono uppercase mb-1">Win/Loss Ratio</p>
-                            <p className="text-lg font-bold text-white">
+                        <div className="bg-pink-50 p-4 rounded-lg border border-pink-100">
+                            <p className="text-[10px] text-pink-400 font-mono uppercase mb-1">Win/Loss Ratio</p>
+                            <p className="text-lg font-bold text-pink-700">
                                 {aiScore > 0 ? (playerScore / aiScore).toFixed(2) : playerScore > 0 ? '∞' : 'N/A'}
                             </p>
-                            <p className="text-[10px] text-zinc-500 font-mono">
+                            <p className="text-[10px] text-pink-400 font-mono">
                                 {playerScore}W / {aiScore}L
                             </p>
                         </div>
-                        <div className="bg-zinc-950 p-4 rounded-lg border border-zinc-800/50">
-                            <p className="text-[10px] text-zinc-600 font-mono uppercase mb-1">AI Training Samples</p>
-                            <p className="text-lg font-bold text-white">{historyCount}</p>
-                            <p className="text-[10px] text-zinc-500 font-mono">
+                        <div className="bg-pink-50 p-4 rounded-lg border border-pink-100">
+                            <p className="text-[10px] text-pink-400 font-mono uppercase mb-1">AI Training Samples</p>
+                            <p className="text-lg font-bold text-pink-700">{historyCount}</p>
+                            <p className="text-[10px] text-pink-400 font-mono">
                                 {historyCount < 5 ? 'Still learning...' : 'Optimized'}
                             </p>
                         </div>
-                        <div className="bg-zinc-950 p-4 rounded-lg border border-zinc-800/50">
-                            <p className="text-[10px] text-zinc-600 font-mono uppercase mb-1">Current Streak</p>
-                            <p className="text-lg font-bold text-white">
+                        <div className="bg-pink-50 p-4 rounded-lg border border-pink-100">
+                            <p className="text-[10px] text-pink-400 font-mono uppercase mb-1">Current Streak</p>
+                            <p className="text-lg font-bold text-pink-700">
                                 {result === GameResult.Win ? '🔥 Winning' :
                                     result === GameResult.Loss ? '❄️ Losing' :
                                         result === GameResult.Tie ? '➡️ Tie' : 'N/A'}
                             </p>
-                            <p className="text-[10px] text-zinc-500 font-mono">
+                            <p className="text-[10px] text-pink-400 font-mono">
                                 Last result: {result || 'No games yet'}
                             </p>
                         </div>
@@ -452,7 +452,7 @@ export const StatisticalResults: React.FC<StatisticalResultsProps> = ({
             </div>
 
             {/* Footer */}
-            <footer className="mt-16 text-zinc-700 text-[10px] font-mono text-center max-w-md mx-auto leading-relaxed tracking-tight">
+            <footer className="mt-16 text-pink-400 text-[10px] font-mono text-center max-w-md mx-auto leading-relaxed tracking-tight">
                 <p className="uppercase opacity-50 mb-2">Analysis Summary</p>
                 <p>
                     Statistical analysis powered by real-time neural network inference.
