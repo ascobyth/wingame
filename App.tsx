@@ -25,7 +25,7 @@ export default function App() {
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [confidence, setConfidence] = useState<number[]>([0.33, 0.33, 0.33]);
-  const [isResetGlowing, setIsResetGlowing] = useState(false);
+  const [resetClickCount, setResetClickCount] = useState(0);
 
   // Handle keyboard shortcuts
   useEffect(() => {
@@ -76,10 +76,19 @@ export default function App() {
   }, [isProcessing]);
 
   const handleResetGame = () => {
-    setIsResetGlowing((prev) => !prev);
+    setResetClickCount((prev) => prev + 1);
     setGameState(initialGameState);
     setConfidence([0.33, 0.33, 0.33]);
   };
+
+  // Calculate glow state: 0=no glow, 1=green, 2=red, then cycle
+  const getGlowState = () => {
+    const cycle = resetClickCount % 3;
+    if (cycle === 1) return 'green';
+    if (cycle === 2) return 'red';
+    return 'none';
+  };
+  const glowState = getGlowState();
 
   // Render Statistical Results page
   if (currentPage === 'stats') {
@@ -153,9 +162,11 @@ export default function App() {
           className={`
             mt-6 px-6 py-3 rounded-xl font-bold uppercase tracking-wider text-sm
             border-2 transition-all duration-300 ease-out
-            ${isResetGlowing
+            ${glowState === 'green'
               ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.6)]'
-              : 'bg-zinc-900 border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-300'}
+              : glowState === 'red'
+                ? 'bg-red-500/20 border-red-500 text-red-400 shadow-[0_0_20px_rgba(239,68,68,0.6)]'
+                : 'bg-zinc-900 border-zinc-700 text-zinc-400 hover:border-zinc-500 hover:text-zinc-300'}
           `}
         >
           Reset Game
